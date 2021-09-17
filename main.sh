@@ -254,12 +254,13 @@ SKIPPED_TAGS="$SKIP_TF|$SKIP_MINOR_OS|$SKIP_NODE|$SKIP_DOCKER|$SKIP_MINIO|$SKIP_
 CURRENT_TS=$(date +%s)
 IMAGES_SKIP_NS="((mailhog|postgis|pgrouting(-bare)?|^library|dejavu|(minio/(minio|mc))))"
 
+SKIPPED_TAGS="$SKIPPED_TAGS|mint.*RELEA|minio:1"
+
 
 default_images="
 minio/mint
 minio/minio
 minio/mc
-minio/doctor
 minio/k8s-operator
 "
 
@@ -285,7 +286,6 @@ MAILU_VERSiON=1.7
 BATCHED_IMAGES="\
 minio/minio/edge\
  minio/minio/latest\
- minio/doctor/latest\
  minio/mc/edge\
  minio/mc/latest::7
 "
