@@ -1,4 +1,4 @@
-FROM minio/minio:edge-cicd
+FROM minio/minio:dev
 ARG DO_UPDATE=y
 ARG NONINTERACTIVE=y
 ARG INSTALL_DEFAULT_LOCALE="fr_FR.UTF-8"
