@@ -21,8 +21,8 @@ jobs:
     steps:
       - name: Set vars
         run: |-
-            if ( echo "$GITHUB_REF" | egrep -q "${RELEASABLE_BRANCHES}" ) \
-            && ( echo "$GITHUB_REPOSITORY" | egrep -q "${RELEASABLE_REPOS}" )
+            if ( echo "$GITHUB_REF" | grep -E -q "${RELEASABLE_BRANCHES}" ) \
+            && ( echo "$GITHUB_REPOSITORY" | grep -E -q "${RELEASABLE_REPOS}" )
             then releasable=true;else releasable=false;fi
             echo "releasable=$releasable" >> $GITHUB_OUTPUT
             echo "silent=$(echo $silent)" >> $GITHUB_OUTPUT
@@ -65,12 +65,13 @@ jobs:
       fail-fast: false
       matrix:
         IMAGES:
-        - "minio/minio/edge minio/minio/latest minio/mc/edge minio/mc/latest"
+        - "minio/mc/edge"
+        - "minio/minio/dev minio/minio/edge minio/minio/master"
+        - "minio/mint/edge minio/mint/latest"
         #- "corpusops/test/a corpusops/test/b corpusops/test/c"
         # all images that werent explicitly told to be built would be built in the next batches
         # we span them onto N jobs
-        - "zleftover:1/2"
-        - "zleftover:2/2"
+        - "zleftover:1/1"
 on:
   push:
   workflow_dispatch:
